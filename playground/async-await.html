@@ -10,7 +10,69 @@
 
 <body>
   <script>
+    function wait(ms = 0) {
+      return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+      });
+    }
 
+    async function go() {
+      console.log('Starting');
+      await wait(2000);
+      console.log('running');
+      await wait(200);
+      console.log('Ending');
+    }
+
+    function makePizza(toppings = []) {
+      return new Promise((resolve, reject) => {
+        // Reject if people try with pineapple
+        if (toppings.includes('pineapple')) {
+          reject('Seriously? Get out');
+        }
+        const amountOfTimeToBake = 500 + toppings.length * 200;
+        // wait 1 second for the pizza to cook:
+        setTimeout(() => {
+          // When you are ready, youcan resolve this promise
+          resolve(`Here is your pizza 🍕 with the toppings ${toppings.join(' ')}`);
+        }, amountOfTimeToBake);
+        // If something went wrong, we can reject this promise
+      });
+    }
+
+    // go();
+
+    async function makeDinner() {
+      const pizzaPromise1 = makePizza(['pepperoni']);
+      const pizzaPromise2 = makePizza(['mushrooms']);
+      const [pep, mush] = await Promise.all([pizzaPromise1, pizzaPromise2]);
+      console.log(pep, mush);
+    }
+
+    makeDinner();
+
+    // // Function declaration
+    // async function fd() { }
+
+    // // Arrow function
+    // const arrowFn = async () => { };
+
+    // // Callback function
+    // window.addEventListener('click', async () => { });
+
+    // // Methods
+    // const person = {
+    //   // Method
+    //   async sayHi() { },
+
+    //   // Method shortahnd
+    //   async sayHello() { },
+
+    //   // Function property
+    //   sayHey: async () => { },
+    // };
+
+    // //
   </script>
 </body>
 
