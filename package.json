@@ -24,8 +24,10 @@
   },
   "keywords": [],
   "devDependencies": {
+    "cssnano": "^5.1.15",
     "eslint": "^8.34.0",
     "eslint-config-wesbos": "^3.2.3",
+    "postcss": "^8.4.21",
     "prettier": "^2.8.4",
     "typescript": "^4.9.5"
   }
